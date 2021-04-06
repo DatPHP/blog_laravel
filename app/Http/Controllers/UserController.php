@@ -5,6 +5,7 @@ use Illuminate\Http\Request;
 use Validator;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Paginator;
 
 class UserController extends Controller
 {
@@ -14,6 +15,8 @@ class UserController extends Controller
       }
   
       public function storeUser(Request $request){
+
+
         $messages = [
           'required' => 'Trường :attribute bắt buộc nhập.',
           'email'    => 'Trường :attribute phải có định dạng email'
@@ -31,6 +34,8 @@ class UserController extends Controller
                       ->withErrors($validator)
                       ->withInput();
           } else {
+
+            
               $users = new User;
               $users->name = $request->name;
               $users->email = $request->email;
@@ -39,14 +44,20 @@ class UserController extends Controller
               
              // dd($users);
             $users->save();
-            return redirect('register')
+            return redirect('user/list')
                 ->with('message', 'Đăng ký thành công.');
           }
       }
 
       public function getlist(){
+        /*
         $user =  new User;
-        $users = $user->paginate(3);
+        $users = $user->simplePaginate(1);
+        */
+
+        $users =  User::paginate(3);
+
+        
         return view('fontend.users-list', ['users' => $users]);
       }
 
@@ -55,7 +66,12 @@ class UserController extends Controller
         var_dump($request->id);
         $id= $request->id;
         $user = User::findorFail($id);
-        dd($user);
+        //dd($user);
+
+        echo "<pre>";
+        var_dump($user); // or var_dump($data);
+        echo "</pre>";
+
         return view('fontend.register', ['user' => $user]);
       }
 

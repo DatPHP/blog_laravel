@@ -3,7 +3,7 @@
 @section('title', 'Tạo tài khoản mới')
 
 @section('content')
-   {!! Form::open(array('url' => '/register', 'class' => 'form-horizontal')) !!}
+   {!! Form::open(array('url' => '/user/create', 'class' => 'form-horizontal')) !!}
    {{ csrf_field() }}
       <div class="form-group">
          {!! Form::label('name', 'Họ và tên', array('class' => 'col-sm-2 control-label')) !!}

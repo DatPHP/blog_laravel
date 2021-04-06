@@ -158,11 +158,8 @@ Route::get('news', function(){
 
 
 
-  Route::get('register', 'App\Http\Controllers\UserController@showRegisterForm');
-  Route::post('register', 'App\Http\Controllers\UserController@storeUser');
+  Route::get('user/create', 'App\Http\Controllers\UserController@showRegisterForm')->name('user.create');
+  Route::post('user/create', 'App\Http\Controllers\UserController@storeUser');
 
-  Route::get('user/list', 'App\Http\Controllers\UserController@getlist');
-  
-  //Route::get('user/edit/{id}', [UserController::class, 'edit'])->where('id', '[0-9]+')->name('dat.edit');  // declare new style of route 
-
-  Route::get('user/edit/{id}', [UserController::class, 'edit'])->name('dat.edit');  // declare new style of route 
+  Route::get('user/list', 'App\Http\Controllers\UserController@getlist')->name('user.list');
+  Route::get('user/edit/{id}', [UserController::class, 'edit'])->name('user.edit');  // declare new style of route 

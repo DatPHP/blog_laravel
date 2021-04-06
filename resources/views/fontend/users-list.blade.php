@@ -7,6 +7,7 @@
 
 @section('content')
     <table class="table table-striped">
+
     <thead class="thead-dark">
       <tr>
         <th>Username</th>
@@ -24,17 +25,13 @@
         <td>{{ $item['email'] }}</td>
         <td>{{ $item['password'] }}</td>
         <td>{{ $item['website'] }}</td>
-       <td> <button type="button" class="btn btn-outline-primary"> <a href="{{ route('dat.edit', $item['id'] )}}">Edit </a></button></td>
+       <td> <button type="button" class="btn btn-outline-primary"> <a href="{{ route('user.edit', $item['id'] )}}">Edit </a></button></td>
       </tr>
       @endforeach
+     
     </tbody>
   </table>
- 
-
-
-
-    {!! $users->links() !!}
-
-
-
+  {!! $users->links() !!}
 @endsection
+
+
