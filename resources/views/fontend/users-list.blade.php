@@ -7,22 +7,25 @@
 
 @section('content')
 
-<div class="container">
-    <div class="row col-md-6 col-md-offset-2 custyle">
-    <table class="table table-striped custab">
-    <thead>
-    <a href="{{ route('user.create')}}" class="btn btn-primary btn-xs pull-right"><b>+</b> Create new Account</a>
-        <tr>
-            <th>ID</th>
-            <th>Username</th>
-            <th>email</th>
-            <th>password</th>
-            <th>website</th>
-            <th  colspan="4">Action</th>
-        </tr>
-    </thead>
-    @foreach($users as $item)
-            <tr>
+
+
+<a href="{{ route('user.create')}}" class="btn btn-primary btn-xs pull-right"><b>+</b> Create new Account</a>
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+     
+            <th cope="col">ID</th>
+            <th cope="col">Username</th>
+            <th cope="col">email</th>
+            <th cope="col">password</th>
+            <th cope="col">website</th>
+            <th  cope="col" colspan="4">Action</th>
+
+    </tr>
+  </thead>
+  <tbody>
+  @foreach($users as $item)
+  <tr>
                 <td>{{ $item['id'] }}</td>
                 <td>{{ $item['name'] }}</td>
                 <td>{{ $item['email'] }}</td>
@@ -34,15 +37,8 @@
                 </td>
             </tr>
             @endforeach
-
-
-
-           
-    </table>
-    </div>
-</div>
-
-  </table>
+  </tbody>
+</table>
   {!! $users->links() !!}
 @endsection
 
