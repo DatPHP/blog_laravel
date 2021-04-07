@@ -5,10 +5,14 @@
 @section('content')
    {!! Form::open(array('url' => '/user/create', 'class' => 'form-horizontal')) !!}
    {{ csrf_field() }}
+
+       @if (isset($id))
+       {!! Form::hidden('id', $id) !!}
+       @endif
       <div class="form-group">
          {!! Form::label('name', 'Họ và tên', array('class' => 'col-sm-2 control-label')) !!}
          <div class="col-sm-10">
-             {!! Form::text('name', 'Nguyen Van A', array('class' => 'form-control', 'placeholder' => 'Nhap Ho Va Ten')) !!}                      
+             {!! Form::text('name', $user['name'] ?? '', array('class' => 'form-control', 'placeholder' => 'Nhap Ho Va Ten')) !!}                      
          </div>
 
       </div>
@@ -16,7 +20,7 @@
       <div class="form-group">
          {!! Form::label('email', 'Địa chỉ email', array('class' => 'col-sm-2 control-label')) !!}
          <div class="col-sm-10">
-            {!! Form::email('email', '', array('class' => 'form-control', 'placeholder' => 'Địa chỉ email thật để nhận phản hồi')) !!}
+            {!! Form::email('email', $user['email']?? '', array('class' => 'form-control', 'placeholder' => 'Địa chỉ email thật để nhận phản hồi')) !!}
          </div>
       </div>
 
@@ -25,7 +29,7 @@
             {{Form::label('password', 'Password',array('class' => 'col-sm-2 control-label'))}}
 
             <div class="col-sm-10">
-            {{ Form::password('password',array('class' => 'form-control','placeholder' => 'Nhap password')) }}
+            {{ Form::text('password',$user['password']?? '', array('class' => 'form-control','placeholder' => 'Nhap password')) }}
             </div>
       </div>
 
@@ -33,7 +37,7 @@
       <div class="form-group">
          {!! Form::label('website', 'Nhập website', array('class' => 'col-sm-2 control-label')) !!}
          <div class="col-sm-10">
-             {!! Form::text('website', '', array('class' => 'form-control', 'placeholder' => 'Nhap website')) !!}                      
+             {!! Form::text('website', $user['website']?? '' , array('class' => 'form-control', 'placeholder' => 'Nhap website')) !!}                      
          </div>
       </div>
 

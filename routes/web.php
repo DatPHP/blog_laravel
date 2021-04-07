@@ -163,3 +163,8 @@ Route::get('news', function(){
 
   Route::get('user/list', 'App\Http\Controllers\UserController@getlist')->name('user.list');
   Route::get('user/edit/{id}', [UserController::class, 'edit'])->name('user.edit');  // declare new style of route 
+
+  //Route::post('user/update', [UserController::class, 'update'])->name('user.update');  // declare new style of route 
+  Route::get('user/delete/{id}', [UserController::class, 'delete'])->name('user.delete');  // declare new style of route 
+
+  

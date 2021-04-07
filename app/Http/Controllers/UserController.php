@@ -35,15 +35,32 @@ class UserController extends Controller
                       ->withInput();
           } else {
 
-            
-              $users = new User;
-              $users->name = $request->name;
-              $users->email = $request->email;
-              $users->password = $request->password;
-              $users->website = $request->website;
+             
               
+
+              if($request->id)
+              {   
+                  //dd('vo if');
+                  $user = User::find($request->id);
+                  $user->name = $request->name;
+                  $user->email = $request->email;
+                  $user->password = $request->password;
+                  $user->website = $request->website;
+                  $user->save();
+              }
+              else 
+              {
+                //dd("vo else");
+                $users = new User;
+                $users->name = $request->name;
+                $users->email = $request->email;
+                $users->password = $request->password;
+                $users->website = $request->website;
+                $users->save();
+              }
+            
              // dd($users);
-            $users->save();
+          
             return redirect('user/list')
                 ->with('message', 'Đăng ký thành công.');
           }
@@ -63,16 +80,18 @@ class UserController extends Controller
 
 
       public function edit(Request $request){
-        var_dump($request->id);
+        //var_dump($request->id);
         $id= $request->id;
         $user = User::findorFail($id);
-        //dd($user);
+        return view('fontend.register', ['user' => $user, 'id'=>$id]);
+      }
 
-        echo "<pre>";
-        var_dump($user); // or var_dump($data);
-        echo "</pre>";
 
-        return view('fontend.register', ['user' => $user]);
+      public function delete(Request $request){
+          $id= $request->id;
+          $user = User::find($id);
+          $user->delete();
+          return redirect('user/list');
       }
 
 }
